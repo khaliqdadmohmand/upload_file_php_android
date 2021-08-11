@@ -3,7 +3,7 @@
 $DBhost = "localhost";
 $DBuser = "root";
 $DBpassword ="";
-$DBname="upload_db";
+$DBname="db_files";
 
 $conn = mysqli_connect($DBhost, $DBuser, $DBpassword, $DBname); 
 
