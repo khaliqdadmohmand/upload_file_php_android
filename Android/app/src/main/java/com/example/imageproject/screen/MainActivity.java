@@ -1,4 +1,4 @@
-package com.example.imageproject;
+package com.example.imageproject.screen;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +19,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.imageproject.FileModel;
+import com.example.imageproject.FileUtils;
+import com.example.imageproject.HttpService;
+import com.example.imageproject.R;
+import com.example.imageproject.RetrofitBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
     private Button button;
     private CharSequence[] options= {"Camera","Gallery","Cancel"};
+    private FloatingActionButton fabMulti;
 
     private String selectedImage;
 
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         cardView = findViewById(R.id.cardview);
         imageView = findViewById(R.id.imageview);
         button = findViewById(R.id.button);
+        fabMulti = findViewById(R.id.fab_multi);
 
         requirePermission();
 
@@ -80,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadFileToServer();
+            }
+        });
+
+        fabMulti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(MainActivity.this, MultiUpload.class);
+                startActivity(in);
             }
         });
     }
